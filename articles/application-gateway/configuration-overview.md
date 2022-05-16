@@ -39,15 +39,15 @@ For more information, see [Application Gateway listener configuration](configura
 
 ## Request routing rules
 
-When you create an application gateway by using the Azure portal, you create a default rule (*rule1*). This rule binds the default listener (*appGatewayHttpListener*) with the default back-end pool (*appGatewayBackendPool*) and the default back-end HTTP settings (*appGatewayBackendHttpSettings*). After you create the  gateway, you can edit the settings of the default rule or create new rules.
+When you create an application gateway by using the Azure portal, you create a default rule (*rule1*). This rule binds the default listener (*appGatewayHttpListener*) with the default back-end pool (*appGatewayBackendPool*) and the default Backend settings (*appGatewayBackendHttpSettings*). After you create the  gateway, you can edit the settings of the default rule or create new rules.
 
 For more information, see [Application Gateway request routing rules](configuration-request-routing-rules.md).
 
-## HTTP settings
+## Backend settings
 
-The application gateway routes traffic to the back-end servers by using the configuration that you specify here. After you create an HTTP setting, you must associate it with one or more request-routing rules.
+The application gateway routes traffic to the back-end servers by using the configuration that you specify here. After you create an Backend setting, you must associate it with one or more request-routing rules.
 
-For more information, see [Application Gateway HTTP settings configuration](configuration-http-settings.md).
+For more information, see [Application Gateway Backend settings configuration](configuration-backend-settings.md).
 
 ## Back-end pool
 
@@ -57,10 +57,10 @@ After you create a back-end pool, you must associate it with one or more request
 
 ## Health probes
 
-An application gateway monitors the health of all resources in its back end by default. But we strongly recommend that you create a custom probe for each back-end HTTP setting to get greater control over health monitoring. To learn how to configure a custom probe, see [Custom health probe settings](application-gateway-probe-overview.md#custom-health-probe-settings).
+An application gateway monitors the health of all resources in its back end by default. But we strongly recommend that you create a custom probe for each Backend setting to get greater control over health monitoring. To learn how to configure a custom probe, see [Custom health probe settings](application-gateway-probe-overview.md#custom-health-probe-settings).
 
 > [!NOTE]
-> After you create a custom health probe, you need to associate it to a back-end HTTP setting. A custom probe won't monitor the health of the back-end pool unless the corresponding HTTP setting is explicitly associated with a listener using a rule.
+> After you create a custom health probe, you need to associate it to a Backend setting. A custom probe won't monitor the health of the back-end pool unless the corresponding Backend setting is explicitly associated with a listener using a rule.
 
 ## Next steps
 
