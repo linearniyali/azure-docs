@@ -1,6 +1,6 @@
 ---
-title: Azure Application Gateway HTTP settings configuration
-description: This article describes how to configure Azure Application Gateway HTTP settings.
+title: Azure Application Gateway Backend settings configuration
+description: This article describes how to configure Azure Application Gateway Backend settings.
 services: application-gateway
 author: greg-lindsay
 ms.service: application-gateway
@@ -9,9 +9,9 @@ ms.date: 02/17/2022
 ms.author: greglin
 ---
 
-# Application Gateway HTTP settings configuration
+# Application Gateway Backend settings configuration
 
-The application gateway routes traffic to the back-end servers by using the configuration that you specify here. After you create an HTTP setting, you must associate it with one or more request-routing rules.
+The application gateway routes traffic to the back-end servers by using the configuration that you specify here. After you create an Backend setting, you must associate it with one or more request-routing rules.
 
 ## Cookie-based affinity
 
@@ -34,7 +34,7 @@ Please refer to TLS offload and End-to-End TLS documentation for Application Gat
 
 ## Connection draining
 
-Connection draining helps you gracefully remove back-end pool members during planned service updates. You can apply this setting to all members of a back-end pool by enabling connection draining on the HTTP setting. It ensures that all deregistering instances of a back-end pool continue to maintain existing connections and serve on-going requests for a configurable timeout and don't receive any new requests or connections. The only exception to this are requests bound for deregistering instances because of gateway-managed session affinity and will continue to be forwarded to the deregistering instances. Connection draining applies to back-end instances that are explicitly removed from the back-end pool.
+Connection draining helps you gracefully remove back-end pool members during planned service updates. You can apply this setting to all members of a back-end pool by enabling connection draining on the Backend setting. It ensures that all deregistering instances of a back-end pool continue to maintain existing connections and serve on-going requests for a configurable timeout and don't receive any new requests or connections. The only exception to this are requests bound for deregistering instances because of gateway-managed session affinity and will continue to be forwarded to the deregistering instances. Connection draining applies to back-end instances that are explicitly removed from the back-end pool.
 
 ## Protocol
 
@@ -54,14 +54,14 @@ This setting is the number of seconds that the application gateway waits to rece
 
 This setting lets you configure an optional custom forwarding path to use when the request is forwarded to the back end. Any part of the incoming path that matches the custom path in the **override backend path** field is copied to the forwarded path. The following table shows how this feature works:
 
-- When the HTTP setting is attached to a basic request-routing rule:
+- When the Backend setting is attached to a basic request-routing rule:
 
   | Original request  | Override back-end path | Request forwarded to back end |
   | ----------------- | --------------------- | ---------------------------- |
   | /home/            | /override/            | /override/home/              |
   | /home/secondhome/ | /override/            | /override/home/secondhome/   |
 
-- When the HTTP setting is attached to a path-based request-routing rule:
+- When the Backend setting is attached to a path-based request-routing rule:
 
   | Original request           | Path rule       | Override back-end path | Request forwarded to back end |
   | -------------------------- | --------------- | --------------------- | ---------------------------- |
@@ -76,10 +76,10 @@ This setting lets you configure an optional custom forwarding path to use when t
 
 ## Use custom probe
 
-This setting associates a [custom probe](application-gateway-probe-overview.md#custom-health-probe) with an HTTP setting. You can associate only one custom probe with an HTTP setting. If you don't explicitly associate a custom probe, the [default probe](application-gateway-probe-overview.md#default-health-probe-settings) is used to monitor the health of the back end. We recommend that you create a custom probe for greater control over the health monitoring of your back ends.
+This setting associates a [custom probe](application-gateway-probe-overview.md#custom-health-probe) with an Backend setting. You can associate only one custom probe with an Backend setting. If you don't explicitly associate a custom probe, the [default probe](application-gateway-probe-overview.md#default-health-probe-settings) is used to monitor the health of the back end. We recommend that you create a custom probe for greater control over the health monitoring of your back ends.
 
 > [!NOTE]
-> The custom probe doesn't monitor the health of the back-end pool unless the corresponding HTTP setting is explicitly associated with a listener.
+> The custom probe doesn't monitor the health of the back-end pool unless the corresponding Backend setting is explicitly associated with a listener.
 
 ## Configuring the host name
 
